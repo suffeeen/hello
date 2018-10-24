@@ -3,7 +3,6 @@ package translator;
 
 import java.io.IOException;
 import java.util.Scanner;
-
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 
@@ -11,24 +10,24 @@ import org.jsoup.nodes.Document;
 public class TestJsoup {
     
     
-    public static String[][]  translator(String word) {
+    public static String[][]  translator(String word) throws IOException {
     	String[][] out = new String [4][8];
     	String url = "http://dict.youdao.com/search?q="+word;
     	try {
-            Document document = Jsoup.connect(url).post();//´ÓÓÐµÀ·­Òë»ñÈ¡µ¥´Ê½âÊÍ
-            out[0][0] = document.select("#phrsListTab > h2 > div > span:nth-child(1) > span").text();//»ñÈ¡1×éÒô±ê
-            out[0][1] = document.select("#phrsListTab > h2 > div > span:nth-child(2) > span").text();//»ñÈ¡2×éÒô±ê
-            out[1][0] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(1)").text();//»ñÈ¡1×é·­Òë
-            out[1][1] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(2)").text();//»ñÈ¡2×é·­Òë
-            out[1][2] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(3)").text();//»ñÈ¡3×é·­Òë
-            out[1][3] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(4)").text();//»ñÈ¡4×é·­Òë
-            out[1][4] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(5)").text();//»ñÈ¡5×é·­Òë
-            out[1][5] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(6)").text();//»ñÈ¡6×é·­Òë
-            out[1][6] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(7)").text();//»ñÈ¡7×é·­Òë
-            out[1][7] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(8)").text();//»ñÈ¡8×é·­Òë
+            Document document = Jsoup.connect(url).post();//ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½
+            out[0][0] = document.select("#phrsListTab > h2 > div > span:nth-child(1) > span").text();//ï¿½ï¿½È¡1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            out[0][1] = document.select("#phrsListTab > h2 > div > span:nth-child(2) > span").text();//ï¿½ï¿½È¡2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            out[1][0] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(1)").text();//ï¿½ï¿½È¡1ï¿½é·­ï¿½ï¿½
+            out[1][1] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(2)").text();//ï¿½ï¿½È¡2ï¿½é·­ï¿½ï¿½
+            out[1][2] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(3)").text();//ï¿½ï¿½È¡3ï¿½é·­ï¿½ï¿½
+            out[1][3] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(4)").text();//ï¿½ï¿½È¡4ï¿½é·­ï¿½ï¿½
+            out[1][4] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(5)").text();//ï¿½ï¿½È¡5ï¿½é·­ï¿½ï¿½
+            out[1][5] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(6)").text();//ï¿½ï¿½È¡6ï¿½é·­ï¿½ï¿½
+            out[1][6] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(7)").text();//ï¿½ï¿½È¡7ï¿½é·­ï¿½ï¿½
+            out[1][7] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(8)").text();//ï¿½ï¿½È¡8ï¿½é·­ï¿½ï¿½
             
             url = "https://cn.bing.com/dict/search?q="+word+"&go=%E6%90%9C%E7%B4%A2&qs=ds&form=Z9LH5";
-            document = Jsoup.connect(url).post();//´Ó±ØÓ¦·­Òë»ñÈ¡Àý¾ä           
+            document = Jsoup.connect(url).post();//ï¿½Ó±ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½           
             out[2][0] =document.select("#pos_0 > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.val_ex").text();
             out[3][0] =document.select("#pos_0 > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.bil_ex").text();
             out[2][1] =document.select("#pos_0 > div:nth-child(4) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.val_ex").text();
@@ -37,21 +36,40 @@ public class TestJsoup {
             out[3][2] =document.select("#pos_0 > div:nth-child(6) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.bil_ex").text();
             
         } catch (IOException e) {
-            e.printStackTrace();
+        	Document document = Jsoup.connect(url).post();//ï¿½ï¿½ï¿½Ðµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½
+            out[0][0] = document.select("#phrsListTab > h2 > div > span:nth-child(1) > span").text();//ï¿½ï¿½È¡1ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            out[0][1] = document.select("#phrsListTab > h2 > div > span:nth-child(2) > span").text();//ï¿½ï¿½È¡2ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+            out[1][0] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(1)").text();//ï¿½ï¿½È¡1ï¿½é·­ï¿½ï¿½
+            out[1][1] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(2)").text();//ï¿½ï¿½È¡2ï¿½é·­ï¿½ï¿½
+            out[1][2] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(3)").text();//ï¿½ï¿½È¡3ï¿½é·­ï¿½ï¿½
+            out[1][3] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(4)").text();//ï¿½ï¿½È¡4ï¿½é·­ï¿½ï¿½
+            out[1][4] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(5)").text();//ï¿½ï¿½È¡5ï¿½é·­ï¿½ï¿½
+            out[1][5] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(6)").text();//ï¿½ï¿½È¡6ï¿½é·­ï¿½ï¿½
+            out[1][6] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(7)").text();//ï¿½ï¿½È¡7ï¿½é·­ï¿½ï¿½
+            out[1][7] = document.select("#phrsListTab > div.trans-container > ul > li:nth-child(8)").text();//ï¿½ï¿½È¡8ï¿½é·­ï¿½ï¿½
+            
+            url = "https://cn.bing.com/dict/search?q="+word+"&go=%E6%90%9C%E7%B4%A2&qs=ds&form=Z9LH5";
+            document = Jsoup.connect(url).post();//ï¿½Ó±ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½           
+            out[2][0] =document.select("#pos_0 > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.val_ex").text();
+            out[3][0] =document.select("#pos_0 > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.bil_ex").text();
+            out[2][1] =document.select("#pos_0 > div:nth-child(4) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.val_ex").text();
+            out[3][1] =document.select("#pos_0 > div:nth-child(4) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.bil_ex").text();
+            out[2][2] =document.select("#pos_0 > div:nth-child(6) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.val_ex").text();
+            out[3][2] =document.select("#pos_0 > div:nth-child(6) > table > tbody > tr:nth-child(1) > td:nth-child(2) > div > div.bil_ex").text();
     	}
     	return out;
     }
   
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     	while(true) {
     		Scanner in = new Scanner(System.in);
     		
     		String [][] a =translator(in.next());  
         	
-        	System.out.print(a[0][0]);//µÚÒ»¸öÒô±ê[Ó¢]
-        	System.out.println(a[0][1]);//µÚ¶þ¸öÒô±ê[ÃÀ]
+        	System.out.print(a[0][0]);//ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[Ó¢]
+        	System.out.println(a[0][1]);//ï¿½Ú¶ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½ï¿½]
         	for(int i=0;i<7; i++)
-        		System.out.print(a[1][i]);//8¸ö·­Òë£¬ÓÐµÄÃ»ÓÐÄÚÈÝ
+        		System.out.print(a[1][i]);//8ï¿½ï¿½ï¿½ï¿½ï¿½ë£¬ï¿½Ðµï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         	System.out.println(a[1][7]);
         	System.out.println(a[2][0]);
         	System.out.println(a[3][0]);
